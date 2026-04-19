@@ -8,22 +8,14 @@ function submitFeedback() {
         return;
     }
 
-    // Get existing data
-    let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
-
-    // Add new feedback
-    feedbacks.push({
+    db.ref("feedbacks").push({
         name: name,
         email: email,
         message: message
     });
 
-    // Save back to localStorage
-    localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
-
     alert("Feedback Submitted Successfully!");
 
-    // Clear fields
     document.getElementById("name").value = "";
     document.getElementById("email").value = "";
     document.getElementById("message").value = "";
